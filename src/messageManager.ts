@@ -1,14 +1,14 @@
-import { log } from "console";
+
 import { MPMessage } from "./models/mps";
+
+const logger = require('./logger');
 
 // Load the AWS SDK for Node.js
 var AWS = require("aws-sdk");
 // Set region
 AWS.config.update({ region: "eu-north-1" });
 
-export const readMessage = async () => {
-
-    console.log("read message ");
+export const readMessage = async () => {    
 
     let mps: Array<MPMessage> = [];
 
@@ -29,7 +29,7 @@ export const readMessage = async () => {
 
     if (data.Messages) {
         for (const message of data.Messages) {
-            console.log("Message Body:", message.Body);            
+            logger.info(`Got from queue ${message.Body}`)            
             const mp= JSON.parse(message.Body)
             // @ts-ignore
             mps.push(mp)
