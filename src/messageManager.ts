@@ -18,7 +18,7 @@ export const readMessage = async () => {
 
     var params = {
         AttributeNames: ["SentTimestamp"],
-        MaxNumberOfMessages: 2,
+        MaxNumberOfMessages: 10,
         MessageAttributeNames: ["All"],
         QueueUrl: queueURL,
         VisibilityTimeout: 20,
